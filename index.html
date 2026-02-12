@@ -75,7 +75,7 @@
 </head>
 <body>
 
-    <h1>Question Time for My Love, Aabhu</h1>
+    <h1>Question Time for My Love</h1>
 
     <div class="question-container">
         <!-- The current question will appear here -->
@@ -101,6 +101,13 @@
             "Will you marry me?"
         ];
 
+        const thankYou = [
+            "Yayyy!!!, You said yes. Thank you, my Buttercup",
+            "Yuppsss, another yes. Thank you, my Dumbass",
+            "oooohhhh!!!, baby said yes. Thank you, my Mutto",
+            "I am happy. I love you my Purple"
+        ];
+
         let currentQuestionIndex = 0;
         let noHoverCount = 0;
         let noClickCount = 0;
@@ -115,9 +122,16 @@
         }
 
         // Handle the "Yes" button click
+        let yesCount = 0;
         function answerYes() {
-            alert('You said YES! Thank you, my love!');
+            if(yesCount == 0) alert("Yayyy!!!, You said yes. Thank you, my Buttercup");
+            if(yesCount == 1) alert("Yuppsss, another yes. Thank you, my Dumbass");
+            if(yesCount == 2) alert("oooohhhh!!!, baby said yes. Thank you, my Mutto");
+            if(yesCount == 3) alert("Great work baby, just one last question. You are doing good Paglu")
+            if(yesCount == 4) alert("I am happy. I love you my Purple");
+            yesCount++;
             nextQuestion();
+            
         }
 
         // Handle the "No" button click
@@ -184,4 +198,3 @@
 
 </body>
 </html>
-
