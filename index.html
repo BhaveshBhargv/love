@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Time for My Love</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #9c5dda;
+            margin-top: 20px;
+        }
+
+        .question {
+            font-size: 75px;
+            margin: 20px;
+            color: #ac13ae;
+        }
+
+        .button-container {
+            margin-top: 30px;
+        }
+
+        .yes-btn, .no-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .no-btn:hover {
+            transform: translateX(50px);
+        }
+
+        .no-btn-disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+
+
+        .question-container {
+            margin-top: 30px;
+        }
+
+        #message {
+            padding-top: 40px;
+            display: block;
+            font-size: 1.5em;
+            color: purple;
+            margin-top: 20px;
+            font-weight: bolder;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>Question Time for My Love</h1>
+
+    <div class="question-container">
+        <!-- The current question will appear here -->
+    </div>
+
+    <div class="button-container">
+        <button class="yes-btn" onclick="answerYes()">Yes</button>
+        <button class="no-btn" id="noBtn" onclick="answerNo()" onmouseover="moveNoButton()">No</button>
+    </div>
+
+    <div class="message" id="message">Heyyyyy baby, please say yes</div>
+    <!-- <div class="message" id="message">AYYEEEE!!!!! why are saying no, try again.</div>
+    <div class="message" id="message">Is it working???? Don't click it any more</div>
+    <div class="message" id="message4">That's it. I am taking it away.</div> -->
+
+    <script>
+        // List of questions to ask
+        const questions = [
+            "Do you love me?",
+            "Are you happy with me?",
+            "Do you believe in us?",
+            "Do you want to spend your life with me?",
+            "Will you marry me?"
+        ];
+
+        let currentQuestionIndex = 0;
+        let noHoverCount = 0;
+        let noClickCount = 0;
+
+        // Display the first question
+        displayQuestion();
+
+        // Function to display a question
+        function displayQuestion() {
+            const questionContainer = document.querySelector('.question-container');
+            questionContainer.innerHTML = `<div class="question" id="question">${questions[currentQuestionIndex]}</div>`;
+        }
+
+        // Handle the "Yes" button click
+        function answerYes() {
+            alert('You said YES! Thank you, my love!');
+            nextQuestion();
+        }
+
+        // Handle the "No" button click
+        function answerNo() {
+            const noButton = document.getElementById('noBtn');
+            const message = document.getElementById('message');
+            noHoverCount++;
+            if (noHoverCount == 10) {
+                message.innerText = 'AYYEEEE!!!!! why are saying no, try again.'
+            }
+            if (noHoverCount == 15) {
+                message.innerText = 'Is it working???? Don\'t try it any more.';
+            }
+            if (noHoverCount == 20) {
+                noButton.style.display = 'none'
+                message.innerText = 'That\'s it. I am taking it away. You forced me to do this.';
+            }
+        }
+
+        // Handle the "No" button hover
+        function moveNoButton() {
+            const noButton = document.getElementById('noBtn');
+            const message = document.getElementById('message');
+            
+            // Move the "No" button away from its original position
+            noButton.style.transform = `translate(${Math.random() * 300 - 150}px, ${Math.random() * 200 - 100}px)`;
+
+            noHoverCount++;
+
+            // If the "No" button has been hovered 10 times, show the message and hide the button
+            if (noHoverCount == 10) {
+                message.innerText = 'AYYEEEE!!!!! why are saying no, try again.'
+            }
+            if (noHoverCount == 15) {
+                message.innerText = 'Is it working???? Don\'t try it any more.';
+            }
+            if (noHoverCount == 20) {
+                noButton.style.display = 'none'
+                message.innerText = 'That\'s it. I am taking it away. You forced me to do this.';
+            }
+        }
+
+        // Move to the next question
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+                resetNoButton();
+            } else {
+                document.getElementById('message').innerText = 'Thanks for answering all my questions!';
+                document.querySelector('.question-container').style.display = 'none';
+                document.querySelector('.button-container').style.display = 'none'; // Hide the buttons
+            }
+        }
+
+        // Reset the "No" button for the next question
+        function resetNoButton() {
+            noHoverCount = 0;
+            document.getElementById('noBtn').style.display = 'inline-block';
+            document.getElementById('noBtn').style.transform = 'translate(0,0)';
+            document.getElementById('message').innerText = 'Good continue with YES';
+        }
+    </script>
+
+</body>
+</html>
