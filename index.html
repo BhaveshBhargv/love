@@ -138,6 +138,7 @@
         function answerNo() {
             const noButton = document.getElementById('noBtn');
             const message = document.getElementById('message');
+            noButton.style.transform = `translate(${Math.random() * 300 - 150}px, ${Math.random() * 200 - 100}px)`;
             noHoverCount++;
             if (noHoverCount == 10) {
                 message.innerText = 'AYYEEEE!!!!! why are saying no, try again.'
@@ -198,4 +199,5 @@
 
 </body>
 </html>
+
 
